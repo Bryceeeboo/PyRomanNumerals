@@ -9,14 +9,39 @@ General program structure:
     Output roman numeral string
 """
 
+# Dictionaries for the OOM concept
 Ones = {1:"I",5:"V",10:"X"}
 Tens = {1:"X",5:"L",10:"C"}
 Huns = {1:"C",5:"D",10:"M"}
+ooms = [Huns,Tens,Ones]
+lims = [100, 10, 1]
 """
-Recursive OOM concept for converting numbers to roman numerals
+OOMR concept for converting numbers to roman numerals
 """
 def OOMR(number):
-    pass
+    # Deal with thousands first
+    if number >= 1000:
+        thous = number/1000 # this returns floor(number/1000) as an int
+        return "M"*thous + OOMR(number - thous*1000)
+    # Reaching this point, we have number < 1000. Use recursive concept
+    outString = ""
+    for i,lowerlim in enumerate(lims):
+        if number >= lowerlim: # Then we apply for this oom
+            if number >= lowerlim*10: # 10
+                outString += ooms[i][10]
+            elif number >= lowerlim*9: # 9
+                outString += ooms[i][1] + ooms[i][10]
+            elif number >= lowerlim*6: # 6, 7, 8
+                outString += \
+                    ooms[i][5] + ((number - lowerlim*5)/lowerlim)*ooms[i][1]
+            elif number >= lowerlim*5: # 5
+                outString += ooms[i][5]
+            elif number >= lowerlim*4: #4
+                outString += ooms[i][1] + ooms[i][5]
+            elif number >= lowerlim: # 1, 2, 3
+                outString += ooms[i][1]*(number/lowerlim)
+            number -= (number/lowerlim)*lowerlim
+    return outString
 
 """
 Converts an input number to a roman numeral.
@@ -109,5 +134,5 @@ def getValidInput():
 print "Convert Numbers to Roman Numerals. Type 'exit' to quit"
 while True:
     inNum = getValidInput()
-    print inNum, "in Roman Numerals is", convertToRoman(inNum), "\n"
-    print inNum, "in OOMRECURSIVE is", OOMR(inNum), "\n"
+    print inNum, "in Roman Numerals is", OOMR(inNum), "\n"
+    #print inNum, "in OOMRECURSIVE is", OOMR(inNum), "\n"
