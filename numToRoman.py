@@ -9,6 +9,15 @@ General program structure:
     Output roman numeral string
 """
 
+Ones = {1:"I",5:"V",10:"X"}
+Tens = {1:"X",5:"L",10:"C"}
+Huns = {1:"C",5:"D",10:"M"}
+"""
+Recursive OOM concept for converting numbers to roman numerals
+"""
+def OOMR(number):
+    pass
+
 """
 Converts an input number to a roman numeral.
     Input : int number, 0 <= number <= 9999
@@ -101,3 +110,4 @@ print "Convert Numbers to Roman Numerals. Type 'exit' to quit"
 while True:
     inNum = getValidInput()
     print inNum, "in Roman Numerals is", convertToRoman(inNum), "\n"
+    print inNum, "in OOMRECURSIVE is", OOMR(inNum), "\n"
