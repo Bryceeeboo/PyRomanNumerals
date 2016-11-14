@@ -63,9 +63,19 @@ def convertToRoman(number):
                 amountLeftOver -= 10
                 amountToConvert += 10
             tens = amountToConvert/10
-            return "X" + convertToRoman(amountLeftOver)
+            return "X"*tens + convertToRoman(amountLeftOver)
+        # If we reach here, we have number < 10
+        elif number >= 9:
+            return "IX" + convertToRoman(number - 9)
+        # number < 9
+        elif number >= 5:
+            return "V" + convertToRoman(number - 5)
+        # number < 5
+        elif number >= 4:
+            return "IV" + convertToRoman(number - 4)
+        # number < 4, atomic base case
         else:
-            return "NZ"
+            return "I"*number
 
 # Input string
 inputString = raw_input("Number to convert: ")
@@ -83,6 +93,3 @@ while valid is False:
         inputString = raw_input("Number to convert: ")
 print "A valid input is now sitting in inNum"
 print inNum, "in Roman Numerals is", convertToRoman(inNum)
-
-# At this point, we have a valid number to convert to a roman numeral
-charDictionary = { 1:"I", 5:"V", 10:"X", 50:"L", 100:"C", 500:"D", 1000:"M"}
