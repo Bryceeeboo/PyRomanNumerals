@@ -14,39 +14,50 @@ Ones = {1:"I",5:"V",10:"X"}
 Tens = {1:"X",5:"L",10:"C"}
 Huns = {1:"C",5:"D",10:"M"}
 ooms = [Huns,Tens,Ones]
-lims = [100, 10, 1]
+lims = [100, 10, 1] # Lower limits of the Huns, Tens, Ones OOMs
 """
-OOMR concept for converting numbers to roman numerals
+OOMR (Orders of Magnitude Roman) conversion function.
+    Input : int number, 0 <= number <= 9999
+    Output: string, number represented as a roman numeral
 """
 def OOMR(number):
-    # Deal with thousands first
+
+    # Deal with thousands first, as this function takes numbers up to 9999
     if number >= 1000:
         thous = number/1000 # this returns floor(number/1000) as an int
         return "M"*thous + OOMR(number - thous*1000)
-    # Reaching this point, we have number < 1000. Use recursive concept
-    outString = ""
-    for i,lowerlim in enumerate(lims):
+
+    # Reaching this point, we have number < 1000. Use OOM loop
+    outString = "" # Set the outString, which will be added to in the loop
+    for i,lowerlim in enumerate(lims): # For each order of magnitude
+        # i is the dictionary we will use from ooms
+        # lowerlim is the lower limit of that OOM. e.g. huns => 100 -> 999
         if number >= lowerlim: # Then we apply for this oom
             if number >= lowerlim*10: # 10
-                outString += ooms[i][10]
+                outString += ooms[i][10] # M, C, X
             elif number >= lowerlim*9: # 9
-                outString += ooms[i][1] + ooms[i][10]
+                outString += ooms[i][1] + ooms[i][10] # CM, XC, IX
             elif number >= lowerlim*6: # 6, 7, 8
                 outString += \
                     ooms[i][5] + ((number - lowerlim*5)/lowerlim)*ooms[i][1]
             elif number >= lowerlim*5: # 5
-                outString += ooms[i][5]
+                outString += ooms[i][5] # D, L, V
             elif number >= lowerlim*4: #4
-                outString += ooms[i][1] + ooms[i][5]
+                outString += ooms[i][1] + ooms[i][5] # CD, XL, IV
             elif number >= lowerlim: # 1, 2, 3
-                outString += ooms[i][1]*(number/lowerlim)
+                outString += ooms[i][1]*(number/lowerlim) # C, CC, CCC
+            # Decrement the number for the next loop
             number -= (number/lowerlim)*lowerlim
+        # else, decrease the order of magnitude
     return outString
 
 """
 Converts an input number to a roman numeral.
     Input : int number, 0 <= number <= 9999
-    Output : string, number represented as a roman numeral
+    Output: string, number represented as a roman numeral
+
+NOTE - This function is NOT used. This represents the expanded version of the
+smaller and more efficient OOMR function.
 """
 def convertToRoman(number):
     if number is 0:
