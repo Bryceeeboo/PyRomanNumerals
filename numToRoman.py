@@ -9,5 +9,15 @@ General program structure:
     Output roman numeral string
 """
 
+# Input string
 inputString = raw_input("Number to convert: ")
-print inputString
+print "Input string: " , inputString
+
+valid = false
+while valid == false:
+    try:
+        inNum = int(inputString)
+        valid = true
+    except Exception as e:
+        print "Invalid Input"
+        inputString = raw_input("Number to convert: ")
