@@ -129,10 +129,3 @@ def getValidInput():
                 sys.exit()
             # If they don't want to exit, then their input is invalid
             print inputString, "is an invalid Input"
-
-"""MAIN LOOP"""
-print "Convert Numbers to Roman Numerals. Type 'exit' to quit"
-while True:
-    inNum = getValidInput()
-    print inNum, "in Roman Numerals is", OOMR(inNum), "\n"
-    #print inNum, "in OOMRECURSIVE is", OOMR(inNum), "\n"
