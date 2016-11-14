@@ -1,0 +1,25 @@
+Order of Magnitude Recursive concept
+
+The concept implemented in the master branch is recursive, but is still hard
+coded in orders of magnitude. There are 3 orders of magnitude, and all are hard
+coded. Each order of magnitude works the same though. The atomic parts of an
+order of magnitude are:
+
+10 = unit10 = M, C, X
+9 = unit1 + unit10 = CM, XC, IX
+8 -> 6 = unit5 + (num - 5)*unit1
+5 = unit5 = D, L, V
+4 = unit1 + unit5 = CD, XL, IV
+3 -> 1 = (num)*unit1
+
+This concept can be applied to each order of magnitude, eliminating the need to
+hard code in each case for each order of magnitude.
+
+We need to set up a dictionary of unit1, unit5, unit10 for each OOM
+
+Ones = {1:"I",5:"V",10:"X"}
+Tens = {1:"X",5:"L",10:"C"}
+Huns = {1:"C",5:"D",10:"M"}
+
+Then we just recurse the number for each of these orders of magnitude,
+switching out the dictionary each time.
