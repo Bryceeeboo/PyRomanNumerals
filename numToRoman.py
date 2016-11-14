@@ -24,3 +24,14 @@ while valid is False:
         # Ask the user to input a valid string again
         inputString = raw_input("Number to convert: ")
 print "A valid input is now sitting in inNum"
+
+# At this point, we have a valid number to convert to a roman numeral
+charDictionary = { 1:"I", 5:"V", 10:"X", 50:"L", 100:"C", 500:"D", 1000:"M"}
+
+"""
+Converts an input number to a roman numeral.
+    Input : int number, 0 <= number <= 9999
+    Output : string, number represented as a roman numeral
+"""
+def convertToRoman(number):
+    pass
