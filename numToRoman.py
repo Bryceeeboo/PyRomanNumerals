@@ -1,5 +1,5 @@
 # Decimal number to roman numeral conversion
-
+import sys
 """
 General program structure:
     Take a number as an input string
@@ -77,19 +77,24 @@ def convertToRoman(number):
         else:
             return "I"*number
 
-# Input string
-inputString = raw_input("Number to convert: ")
-print "Input string : ", inputString
-
-# While loop to check the validity of the input string
-valid = False
-while valid is False:
-    try:  # Assuming the input can be converted to an integer
-        inNum = int(inputString)
-        valid = True
-    except Exception as e:  # If the input can't be converted
-        print "Invalid Input"
-        # Ask the user to input a valid string again
+"""MAIN LOOP"""
+print "Convert Numbers to Roman Numerals. Type 'exit' to quit"
+while True:
+    # While loop to check the validity of the input string
+    valid = False
+    while valid is False:
+        # Input string
         inputString = raw_input("Number to convert: ")
-print "A valid input is now sitting in inNum"
-print inNum, "in Roman Numerals is", convertToRoman(inNum)
+        try:  # Assuming the input can be converted to an integer
+            inNum = int(inputString)
+            if inNum > 9999:
+                print "Number too big. Only enter numbers <= 9999\n"
+            else:
+                valid = True
+        except Exception as e:  # If the input can't be converted
+            # The user might want to exit the application
+            if inputString.lower() == "exit":
+                sys.exit()
+            # If they don't want to exit, then their input is invalid
+            print inputString, "is an invalid Input"
+    print inNum, "in Roman Numerals is", convertToRoman(inNum), "\n"
