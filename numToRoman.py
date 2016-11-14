@@ -34,6 +34,8 @@ def convertToRoman(number):
         elif number >= 500: # Return D + recursive
             return "D" + convertToRoman(number - 500)
         # If we've reached here, we have number < 500
+        elif number >= 400:
+            return "CD" + convertToRoman(number - 400)
         elif number >= 100:
             # Take off 100 over and over until we get to a number < 100
             amountToConvert = 0
@@ -43,6 +45,25 @@ def convertToRoman(number):
                 amountToConvert += 100
             huns = amountToConvert/100
             return "C"*huns + convertToRoman(amountLeftOver)
+        # If we've reached here, we have number < 100
+        elif number >= 90:
+            return "XC" + convertToRoman(number - 90)
+        # If we've reached here, we have number < 90
+        elif number >= 50:
+            return "L" + convertToRoman(number - 50)
+        # If we've reached here, we have number < 50
+        elif number >= 40:
+            return "XL" + convertToRoman(number - 40)
+        # If weave reached here, we have number < 40
+        elif number >= 10:
+            # Take off 10 over and over until we get to a number < 10
+            amountToConvert = 0
+            amountLeftOver = number
+            while amountLeftOver >= 10:
+                amountLeftOver -= 10
+                amountToConvert += 10
+            tens = amountToConvert/10
+            return "X" + convertToRoman(amountLeftOver)
         else:
             return "NZ"
 
