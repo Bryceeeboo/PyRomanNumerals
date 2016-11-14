@@ -4,22 +4,23 @@ import time
 from numToRoman import *
 
 trials = 100
+maxnum = 9999
 averages = []
 for i in range(trials):
     start = time.time()
-    for i in range(9999):
+    for i in range(maxnum):
         roman = OOMR(i)
     fin = time.time()
     averages.append(fin - start)
 
-print "OOM ",sum(averages)/trials
+print "OOM ",sum(averages)/trials/maxnum
 
 averages = []
 for i in range(trials):
     start = time.time()
-    for i in range(9999):
+    for i in range(maxnum):
         roman = convertToRoman(i)
     fin = time.time()
     averages.append(fin - start)
 
-print "CTR ",sum(averages)/trials
+print "CTR ",sum(averages)/trials/maxnum
