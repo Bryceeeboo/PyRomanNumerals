@@ -27,10 +27,14 @@ def convertToRoman(number):
                 amountToConvert += 1000
             thous = amountToConvert/1000
             return "M"*thous + convertToRoman(amountLeftOver)
-        elif number >= 500: # Then we can return D + recursive
+        # If we've reached here, we have number < 1000
+        elif number >= 900: # 900 in roman numerals is CM
+            return "CM" + convertToRoman(number - 900)
+        # If we've reached here, we have number < 900
+        elif number >= 500: # Return D + recursive
             return "D" + convertToRoman(number - 500)
         else:
-            return "---"
+            return "NZ"
 
 # Input string
 inputString = raw_input("Number to convert: ")
