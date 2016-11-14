@@ -33,6 +33,16 @@ def convertToRoman(number):
         # If we've reached here, we have number < 900
         elif number >= 500: # Return D + recursive
             return "D" + convertToRoman(number - 500)
+        # If we've reached here, we have number < 500
+        elif number >= 100:
+            # Take off 100 over and over until we get to a number < 100
+            amountToConvert = 0
+            amountLeftOver = number
+            while amountLeftOver >= 100:
+                amountLeftOver -= 100
+                amountToConvert += 100
+            huns = amountToConvert/100
+            return "C"*huns + convertToRoman(amountLeftOver)
         else:
             return "NZ"
 
