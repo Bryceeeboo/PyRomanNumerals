@@ -77,12 +77,10 @@ def convertToRoman(number):
         else:
             return "I"*number
 
-"""MAIN LOOP"""
-print "Convert Numbers to Roman Numerals. Type 'exit' to quit"
-while True:
+"""Gets and returns a valid input from the user"""
+def getValidInput():
     # While loop to check the validity of the input string
-    valid = False
-    while valid is False:
+    while True:
         # Input string
         inputString = raw_input("Number to convert: ")
         try:  # Assuming the input can be converted to an integer
@@ -90,11 +88,16 @@ while True:
             if inNum > 9999:
                 print "Number too big. Only enter numbers <= 9999\n"
             else:
-                valid = True
+                return inNum # The only case where we return
         except Exception as e:  # If the input can't be converted
             # The user might want to exit the application
             if inputString.lower() == "exit":
                 sys.exit()
             # If they don't want to exit, then their input is invalid
             print inputString, "is an invalid Input"
+
+"""MAIN LOOP"""
+print "Convert Numbers to Roman Numerals. Type 'exit' to quit"
+while True:
+    inNum = getValidInput()
     print inNum, "in Roman Numerals is", convertToRoman(inNum), "\n"
