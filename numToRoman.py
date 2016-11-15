@@ -145,4 +145,4 @@ def getValidInput():
             if inputString.lower() == "exit":
                 sys.exit()
             # If they don't want to exit, then their input is invalid
-            print(inputString, "is an invalid Input")
+            print inputString, "is an invalid Input"
