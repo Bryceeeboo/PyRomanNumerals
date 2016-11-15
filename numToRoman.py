@@ -130,8 +130,8 @@ def getValidInput():
         inputString = raw_input("Number to convert: ")
         try:  # Assuming the input can be converted to an integer
             inNum = int(inputString)
-            if inNum > 9999:
-                print "Number too big. Only enter numbers <= 9999\n"
+            if inNum > 9999 or inNum < 1:
+                print "Number out of range. Only enter 1 <= numbers <= 9999\n"
             else:
                 return inNum # The only case where we return
         except Exception as e:  # If the input can't be converted
